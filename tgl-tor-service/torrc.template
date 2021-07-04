@@ -2,4 +2,4 @@ SOCKSPort 0
 DataDirectory /var/state/tor
 
 HiddenServiceDir /var/state/tor/service
-HiddenServicePort 80 ${SERVICE_NAME}:8080
+HiddenServicePort 80 ${SERVICE_NAME}:${SERVICE_PORT}
