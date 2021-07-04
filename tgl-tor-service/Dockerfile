@@ -24,10 +24,12 @@ RUN apt update && apt install -y openssl libevent-2.1-6 zlib1g \
 
 ENV TOR_VERSION=0.4.6.6
 ENV SRC_DIR=/usr/local/app/tor-${TOR_VERSION}/src
+ENV SERVICE_NAME=localhost
 
 COPY --from=0 ${SRC_DIR}/app/tor /usr/local/bin/tor
 COPY --from=0 ${SRC_DIR}/config/torrc.sample /usr/local/etc/tor/torrc.sample
 COPY --from=0 ${SRC_DIR}/config/geoip6 /usr/local/share/tor/geoip6
 COPY --from=0 ${SRC_DIR}/config/geoip /usr/local/share/tor/geoip
+COPY etc/torrc /usr/local/etc/tor/torrc
 
 CMD [ "/usr/local/bin/tor" ]
