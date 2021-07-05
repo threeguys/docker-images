@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y gcc make libssl-dev libevent-dev zlib1g-dev wget
+RUN apt update \
+    && apt install -y gcc make libssl-dev libevent-dev zlib1g-dev wget \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV TOR_VERSION=0.4.6.6
 
@@ -16,14 +18,16 @@ RUN cd /usr/local/app/tor-${TOR_VERSION} \
 
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y openssl libevent-2.1-6 zlib1g \
-    && mkdir -p /usr/local/etc/tor \
-    && mkdir -p /usr/local/share/tor \
+RUN apt update && apt install -y openssl libevent-2.1-6 zlib1g gettext \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /usr/local/etc/tor && chown -R 1000 /usr/local/etc/tor \
+    && mkdir -p /usr/local/share/tor && chown -R 1000 /usr/local/share/tor \
     && mkdir -p /usr/local/bin \
-    && mkdir -p /home/tor && chown 1000 /home/tor
+    && mkdir -p /var/state/tor && chown -R 1000 /var/state/tor \
+    && mkdir -p /home/tor && chown -R 1000 /home/tor
 
 ENV TOR_VERSION=0.4.6.6
-
 ENV SRC_DIR=/usr/local/app/tor-${TOR_VERSION}/src
 ENV APP_DIR=${SRC_DIR}/app
 ENV TOOL_DIR=${SRC_DIR}/tools
@@ -38,5 +42,6 @@ COPY --from=0 ${CONF_DIR}/geoip6 ${CONF_DIR}/geoip /usr/local/share/tor/
 
 COPY torrc.template /home/tor/torrc.template
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 
-CMD [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
