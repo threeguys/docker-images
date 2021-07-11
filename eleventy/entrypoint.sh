@@ -1,6 +1,5 @@
 #!/bin/bash
 
-INPUT=${INPUT:-/src}
 OUTPUT=${OUTPUT:-/site}
 
 case "$1" in
@@ -8,7 +7,7 @@ case "$1" in
         set -- "$@"
     ;;
     *)
-        set -- /usr/local/bin/eleventy --input=${INPUT} --output=${OUTPUT} "$@"
+        set -- /usr/local/bin/eleventy --output=${OUTPUT} "$@"
     ;;
 esac
 
