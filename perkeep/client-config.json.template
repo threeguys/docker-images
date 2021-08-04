@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "localhost": {
+      "server": "http://localhost:3179",
+      "auth": "${PERKEEP_AUTH}",
+      "default": true
+    }
+  },
+  "identity": "${PERKEEP_IDENTITY}",
+  "identitySecretRing": "${PERKEEP_SECRING}",
+  "ignoredFiles": [
+    ".DS_Store"
+  ]
+}

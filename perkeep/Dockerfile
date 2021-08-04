@@ -25,14 +25,18 @@ RUN mkdir -p \
     /var/local/perkeep/blobs \
     /var/local/perkeep/index
 
-ARG PERKEEP_AUTH
 ARG PERKEEP_IDENTITY
 
+ENV PERKEEP_AUTH=localhost
 ENV PERKEEP_SECRING=/var/local/perkeep/keys/secring.gpg
 ENV PERKEEP_BLOBPATH=/var/local/perkeep/blobs
 ENV PERKEEP_LEVELDB=/var/local/perkeep/index/level.db
+ENV PERKEEP_CONFIG=/var/local/perkeep/server-config.json
+ENV PERKEEP_CLIENT_CONFIG=/root/.config/perkeep/client-config.json
+ENV PERKEEP_BLOBROOT=blobroot
 
 COPY server-config.json.template /var/local/perkeep/server-config.json.template
+COPY client-config.json.template /root/.config/perkeep/client-config.json.template
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh

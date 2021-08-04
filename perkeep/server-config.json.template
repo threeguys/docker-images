@@ -1,11 +1,12 @@
 {
     "auth": "${PERKEEP_AUTH}",
     "listen": ":3179",
-    "camliNetIP": "",
     "identity": "${PERKEEP_IDENTITY}",
     "identitySecretRing": "${PERKEEP_SECRING}",
+
     "blobPath": "${PERKEEP_BLOBPATH}",
     "packRelated": true,
     "levelDB": "${PERKEEP_LEVELDB}",
+
     "shareHandler": false
 }
