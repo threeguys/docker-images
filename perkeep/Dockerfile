@@ -1,7 +1,5 @@
 FROM tgl/golang
 
-COPY go/ /go/
-
 RUN git clone https://github.com/perkeep/perkeep.git \
     && cd /perkeep \
     && git checkout tags/0.11 \
