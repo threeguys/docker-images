@@ -1,0 +1,29 @@
+--- bazel/repository_locations.bzl	2021-07-21 00:46:28.340000000 +0000
++++ bazel/repository_locations.bzl.fixed	2021-07-21 00:46:12.720000000 +0000
+@@ -705,10 +705,13 @@
+         project_name = "Common Expression Language (CEL) C++ library",
+         project_desc = "Common Expression Language (CEL) C++ library",
+         project_url = "https://opensource.google/projects/cel",
+-        version = "9841e3ee251f3cc4cd5b6dd9deee6818bc9f2854",
+-        sha256 = "7e42cbad7d1068d6e7891ad101e2863e727692136d6b3a817c487b3cc7bcfdcc",
++#        version = "9841e3ee251f3cc4cd5b6dd9deee6818bc9f2854",
++#        sha256 = "7e42cbad7d1068d6e7891ad101e2863e727692136d6b3a817c487b3cc7bcfdcc",
++	version = "0.4.0",
++	sha256 = "ba09277ab43ebc67672d69f8df13eb6ed999d8935635e8f1b0e7679afed2981b",
+         strip_prefix = "cel-cpp-{version}",
+-        urls = ["https://github.com/google/cel-cpp/archive/{version}.tar.gz"],
++#        urls = ["https://github.com/google/cel-cpp/archive/{version}.tar.gz"],
++	urls = ["https://github.com/google/cel-cpp/archive/v{version}.tar.gz"],
+         use_category = ["dataplane_ext"],
+         extensions = [
+             "envoy.access_loggers.wasm",
+@@ -720,7 +723,8 @@
+             "envoy.filters.network.wasm",
+             "envoy.stat_sinks.wasm",
+         ],
+-        release_date = "2020-12-17",
++#        release_date = "2020-12-17",
++	release_date = "2021-01-28",
+         cpe = "N/A",
+     ),
+     com_github_google_flatbuffers = dict(
